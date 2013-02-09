@@ -212,6 +212,19 @@ private:
 class YTableCell
 {
 public:
+   /**
+     * Constructor with label and optional icon name for cells that don't have
+     * a parent item yet (that will be added to a parent later with
+     * setParent()).
+     **/
+    YTableCell( bool checked )
+        : _label()
+        , _iconName( )
+        , _parent( 0 )
+        , _checkable(true)
+        , _checked(checked)
+        , _column ( -1 )
+        {}
     /**
      * Constructor with label and optional icon name for cells that don't have
      * a parent item yet (that will be added to a parent later with
@@ -221,6 +234,8 @@ public:
         : _label( label )
         , _iconName( iconName )
 	, _parent( 0 )
+        , _checkable(false)
+        , _checked(false)
 	, _column ( -1 )
         {}
 
@@ -235,6 +250,8 @@ public:
         : _label( label )
         , _iconName( iconName )
 	, _parent( parent )
+        , _checkable(false)
+        , _checked(false)
 	, _column ( column )
         {}
 
@@ -270,7 +287,31 @@ public:
      * Return 'true' if this cell has an icon name.
      **/
     bool hasIconName() const { return ! _iconName.empty(); }
-
+    
+    /**
+     * Set this cell as checkable.
+     **/
+    void setCheckable( bool checkable=true ) { _checkable = checkable; }
+    
+    /**
+     * Return 'true' if this cell is checkable.
+     **/
+    bool checkable() const { return _checkable; }
+    
+    /**
+     * Return 'true' if this cell is checked.
+     **/
+    bool checked() const { return _checked; }
+    
+    /**
+     * Set this cell's check value, if cell is checkable.
+     *
+     * If this is called after the corresponding table item (table row) is
+     * added to the table widget, call YTable::cellChanged() to notify the
+     * table widget about the fact. Only then will the display be updated.
+     **/
+    void setChecked( bool checked=true ) { if (_checkable) _checked = checked; }
+    
     /**
      * Set this cell's icon name.
      *
@@ -311,6 +352,8 @@ private:
     std::string		_label;
     std::string		_iconName;
     YTableItem *	_parent;
+    bool                _checkable;
+    bool                _checked;
     int			_column;
 };
 
