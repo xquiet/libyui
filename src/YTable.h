@@ -94,6 +94,12 @@ public:
     bool hasColumn( int column ) const;
 
     /**
+     * Return 'true' if this table header has a column no. 'column'
+     * that is checkable (counting from 0 on).
+     **/
+    bool checkable( int column ) const;
+    
+    /**
      * Return the header text for the specified column.
      **/
     std::string header( int column ) const;

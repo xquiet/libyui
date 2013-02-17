@@ -95,6 +95,13 @@ YTable::hasColumn( int column ) const
 }
 
 
+bool
+YTable::checkable ( int column ) const
+{
+    return priv->header->checkable( column );
+}
+
+
 std::string
 YTable::header( int column ) const
 {

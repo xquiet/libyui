@@ -57,7 +57,7 @@ public:
      * Add a column with the specified colum header text and alignment.
      **/
     void addColumn( const std::string &	header,
-		    YAlignmentType	alignment = YAlignBegin );
+		    YAlignmentType	alignment = YAlignBegin, bool checkable=false );
 
     /**
      * Return the number of columns.
@@ -69,7 +69,14 @@ public:
      * (counting from 0 on).
      **/
     bool hasColumn( int column ) const;
+    
+    /**
+     * Return 'true' if this table header has a column no. 'column'
+     * that is checkable (counting from 0 on).
+     **/
+    bool checkable( int column ) const;
 
+    
     /**
      * Return the header text for the specified column.
      **/

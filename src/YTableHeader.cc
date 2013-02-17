@@ -39,7 +39,8 @@ struct YTableHeaderPrivate
 	{}
 
     std::vector<std::string>	headers;
-    std::vector<YAlignmentType>	alignments;
+    std::vector<YAlignmentType> alignments;
+    std::vector<bool>           checkable;
 };
 
 
@@ -59,10 +60,11 @@ YTableHeader::~YTableHeader()
 
 
 void
-YTableHeader::addColumn( const std::string & header, YAlignmentType alignment )
+YTableHeader::addColumn( const std::string & header, YAlignmentType alignment, bool checkable)
 {
     priv->headers.push_back( header );
     priv->alignments.push_back( alignment );
+    priv->checkable.push_back(checkable);
 }
 
 
@@ -79,6 +81,14 @@ YTableHeader::hasColumn( int column ) const
     return column >= 0 && column < (int) priv->headers.size();
 }
 
+bool 
+YTableHeader::checkable( int column ) const
+{
+  if ( column >= 0 && column < (int) priv->headers.size() )
+    return priv->checkable[column];
+  else 
+    return false;
+}
 
 std::string
 YTableHeader::header( int column ) const
