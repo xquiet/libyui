@@ -58,13 +58,18 @@ YTableHeader::~YTableHeader()
     // NOP
 }
 
-
 void
 YTableHeader::addColumn( const std::string & header, YAlignmentType alignment, bool checkable)
 {
     priv->headers.push_back( header );
     priv->alignments.push_back( alignment );
     priv->checkable.push_back(checkable);
+}
+
+void
+YTableHeader::addColumn( const std::string & header, YAlignmentType alignment )
+{
+   addColumn(header, alignment, false);
 }
 
 

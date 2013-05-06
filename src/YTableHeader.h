@@ -56,8 +56,15 @@ public:
     /**
      * Add a column with the specified colum header text and alignment.
      **/
+    /* left for compatibility */
+    void addColumn( const std::string & header,
+		            YAlignmentType  alignment = YAlignBegin );
+
+    /**
+     * Add a column with the specified colum header text, alignment and checkable.
+     **/
     void addColumn( const std::string &	header,
-		    YAlignmentType	alignment = YAlignBegin, bool checkable=false );
+		    YAlignmentType	alignment , bool checkable);
 
     /**
      * Return the number of columns.
