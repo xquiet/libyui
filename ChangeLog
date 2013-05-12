@@ -1,4 +1,17 @@
 -------------------------------------------------------------------
+Fri May 10 14:00:00 UTC 2013 - bjoern.esser@gmail.com
+
+- checking prefix in -doc pkg is obsolete
+- use bootstrap.sh for legacy in -doc pkg here, too
+
+-------------------------------------------------------------------
+Fri May 10 10:40:00 UTC 2013 - bjoern.esser@gmail.com
+
+- use a common toplevel CMakeLists.txt
+- fix building *-doc pkgs
+- Version 3.0.4
+
+-------------------------------------------------------------------
 Mon May  6 13:30:00 UTC 2013 - bjoern.esser@gmail.com
 
 - fix build issues with ncurses and qt
