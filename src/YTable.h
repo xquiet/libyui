@@ -142,6 +142,17 @@ public:
      * (e.g., with shift-click or ctrl-click).
      **/
     bool hasMultiSelection() const;
+    
+    /**
+     * set the multi selection using chckeboxes
+     **/
+    void setShowCheckBoxes( bool show=true );
+    
+    /**
+     * Return 'true' if the user can select multiple items  at the same time
+     * and that is done by using checkboxes
+     **/
+    bool showCheckBoxes();
 
     /**
      * Notification that a cell (its text and/or its icon) was changed from the

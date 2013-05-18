@@ -36,12 +36,16 @@ struct YTablePrivate
 	: header( header )
 	, keepSorting( false )
 	, immediateMode( false )
+        , multiSelection( false )
+        , showCheckBoxes( false )
     {
     }
 
     YTableHeader *	header;
     bool		keepSorting;
     bool		immediateMode;
+    bool                multiSelection;
+    bool                showCheckBoxes;
 };
 
 
@@ -56,6 +60,8 @@ YTable::YTable( YWidget * parent, YTableHeader * header, bool multiSelection )
     YUI_CHECK_PTR( header );
     YUI_CHECK_NEW( priv   );
 
+    priv->multiSelection = multiSelection;
+    
     setDefaultStretchable( YD_HORIZ, true );
     setDefaultStretchable( YD_VERT,  true );
 }
@@ -146,6 +152,17 @@ YTable::hasMultiSelection() const
     return ! YSelectionWidget::enforceSingleSelection();
 }
 
+
+void YTable::setShowCheckBoxes( bool show )
+{
+  if (priv->multiSelection)
+    priv->showCheckBoxes = show;
+}
+
+bool YTable::showCheckBoxes()
+{
+  return priv->showCheckBoxes;
+}
 
 const YPropertySet &
 YTable::propertySet()
