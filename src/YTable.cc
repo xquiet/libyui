@@ -29,38 +29,35 @@
 #include "YUISymbols.h"
 #include "YTable.h"
 
-
 struct YTablePrivate
 {
     YTablePrivate( YTableHeader * header )
 	: header( header )
 	, keepSorting( false )
 	, immediateMode( false )
-        , multiSelection( false )
-        , showCheckBoxes( false )
+        , mode( YTableSingleLineSelection )
     {
     }
 
     YTableHeader *	header;
     bool		keepSorting;
     bool		immediateMode;
-    bool                multiSelection;
-    bool                showCheckBoxes;
+    YTableMode          mode;
 };
 
 
 
 
-YTable::YTable( YWidget * parent, YTableHeader * header, bool multiSelection )
+YTable::YTable( YWidget * parent, YTableHeader * header, YTableMode mode )
     : YSelectionWidget( parent,
 			"",	// label
-			! multiSelection ) // enforceSingleSelection
+			mode==YTableSingleLineSelection) // enforceSingleSelection
     , priv( new YTablePrivate( header ) )
 {
     YUI_CHECK_PTR( header );
     YUI_CHECK_NEW( priv   );
 
-    priv->multiSelection = multiSelection;
+    priv->mode = mode;
     
     setDefaultStretchable( YD_HORIZ, true );
     setDefaultStretchable( YD_VERT,  true );
@@ -152,16 +149,9 @@ YTable::hasMultiSelection() const
     return ! YSelectionWidget::enforceSingleSelection();
 }
 
-
-void YTable::setShowCheckBoxes( bool show )
+YTableMode YTable::selectionMode()
 {
-  if (priv->multiSelection)
-    priv->showCheckBoxes = show;
-}
-
-bool YTable::showCheckBoxes()
-{
-  return priv->showCheckBoxes;
+  return priv->mode;
 }
 
 const YPropertySet &

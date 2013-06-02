@@ -100,6 +100,11 @@ enum YButtonOrder
 			// [Cancel] [Continue]
 };
 
-
+enum YTableMode {
+    YTableSingleLineSelection,
+    YTableMultiSelection,
+    YTableCheckBoxOnFirstColumn,
+    YTableCheckBoxOnLastColumn
+  };
 
 #endif // YTypes_h

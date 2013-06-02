@@ -32,8 +32,6 @@
 
 class YTablePrivate;
 
-
-
 /**
  * Table: Selection list with multiple columns. The user can select exactly one
  * row (with all its columns) from that list. Each cell (each column within
@@ -67,7 +65,7 @@ protected:
      * items at the same time (e.g., with shift-click or ctrl-click). This can
      * only be set in the constructor.
      **/
-    YTable( YWidget * parent, YTableHeader * header, bool multiSelection );
+    YTable( YWidget * parent, YTableHeader * header, YTableMode mode );
 
 public:
 
@@ -141,18 +139,13 @@ public:
      * Return 'true' if the user can select multiple items  at the same time
      * (e.g., with shift-click or ctrl-click).
      **/
-    bool hasMultiSelection() const;
+    bool hasMultiSelection() const; 
     
-    /**
-     * set the multi selection using chckeboxes
-     **/
-    void setShowCheckBoxes( bool show=true );
-    
-    /**
-     * Return 'true' if the user can select multiple items  at the same time
-     * and that is done by using checkboxes
-     **/
-    bool showCheckBoxes();
+     /**
+     * returns the YTable selection mode
+     *
+     **/ 
+    YTableMode selectionMode();
 
     /**
      * Notification that a cell (its text and/or its icon) was changed from the
